@@ -27,21 +27,17 @@
             100% { background-position: 1000px 0; }
         }
         
+        /* A4 Certificate Container - Portrait Orientation */
         .certificate-container {
             animation: fadeIn 1s ease-out;
-            aspect-ratio: 11 / 8.5;
+            width: 210mm; /* A4 width */
+            height: 297mm; /* A4 height */
             background: 
-                /* Subtle watermark pattern */
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 10px,
-                    rgba(166, 124, 0, 0.01) 10px,
-                    rgba(166, 124, 0, 0.01) 20px
-                ),
                 /* Paper texture */
                 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2ZXJzaW9uPSIxLjAiPjxkZWZzPjxmaWx0ZXIgaWQ9Im5vaXNlIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIxMCIgc3RpdGNoVGlsZXM9InN0aXRjaCI+PC9mZVR1cmJ1bGVuY2U+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCI+PC9mZUNvbG9yTWF0cml4PjwvZmlsdGVyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjAzIiBmaWxsPSIjRkZGIj48L3JlY3Q+PC9zdmc+'),
                 linear-gradient(135deg, #F9F9F7 0%, #F5F5F3 100%);
+            margin: 0 auto;
+            position: relative;
         }
         
         .double-border {
@@ -52,47 +48,53 @@
         .double-border::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 1px solid #E0E0E0;
-            border-radius: 12px;
+            top: 15mm;
+            left: 15mm;
+            right: 15mm;
+            bottom: 15mm;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
             pointer-events: none;
         }
         
         .double-border::after {
             content: '';
             position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
+            top: 20mm;
+            left: 20mm;
+            right: 20mm;
+            bottom: 20mm;
             border: 3px solid #A67C00;
-            border-radius: 8px;
+            border-radius: 6px;
             pointer-events: none;
             background: linear-gradient(45deg, transparent 50%, rgba(166, 124, 0, 0.03) 100%);
         }
         
-        /* Watermark Logo Background */
-        .watermark-background {
+        /* Main company logo watermark */
+        .company-logo-watermark {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
             opacity: 0.08;
             pointer-events: none;
             z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23A67C00' d='M100,50 C120,40 140,45 150,60 C160,75 155,95 140,105 C125,115 100,120 80,110 C60,100 45,80 50,60 C55,40 75,35 90,45 C105,55 110,70 100,85 C90,100 70,105 55,95 C40,85 35,65 45,50 C55,35 75,30 95,40 C115,50 125,65 120,80 C115,95 100,100 85,95 C70,90 60,75 65,60 C70,45 85,40 100,45 Z'/%3E%3Ctext x='100' y='130' text-anchor='middle' font-family='Cormorant Garamond' font-size='18' font-weight='bold' fill='%23A67C00'%3ECODENPROFIT%3C/text%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 400px;
-            background-position: center;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .logo-watermark-svg {
+            width: 100%;
+            height: auto;
+            filter: grayscale(100%) brightness(1.2);
         }
         
         .certificate-content {
             position: relative;
             z-index: 2;
+            height: 100%;
+            padding: 25mm;
         }
         
         .ornamental-border {
@@ -105,8 +107,8 @@
         
         .ornament-corner {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-color: #A67C00;
         }
         
@@ -176,17 +178,22 @@
             
             .certificate-container {
                 box-shadow: none !important;
-                margin: 0 auto !important;
-                max-width: 100% !important;
-                aspect-ratio: auto !important;
-                min-height: 11in !important;
-                width: 11in !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                position: relative !important;
+                top: 0 !important;
+                left: 0 !important;
             }
             
             body {
                 background: white !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                overflow: hidden !important;
             }
             
             .social-footer, .logo-container {
@@ -194,8 +201,12 @@
                 print-color-adjust: exact !important;
             }
             
-            .watermark-background {
-                opacity: 0.05 !important;
+            .company-logo-watermark {
+                opacity: 0.06 !important;
+            }
+            
+            .certificate-content {
+                padding: 25mm !important;
             }
         }
         
@@ -266,6 +277,28 @@
                 0 4px 12px rgba(166, 124, 0, 0.3),
                 inset 0 2px 4px rgba(255, 255, 255, 0.4);
         }
+        
+        /* A4 specific adjustments */
+        .a4-header {
+            margin-bottom: 15mm;
+        }
+        
+        .a4-recipient {
+            margin: 12mm 0;
+        }
+        
+        .a4-signatures {
+            margin-top: 20mm;
+            margin-bottom: 15mm;
+        }
+        
+        .a4-seal {
+            margin: 10mm 0;
+        }
+        
+        .a4-footer {
+            margin-top: 10mm;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-amber-50 via-gray-50 to-amber-50 min-h-screen p-4 md:p-8 flex flex-col items-center justify-center font-['Montserrat']">
@@ -273,7 +306,7 @@
         <!-- Header -->
         <div class="text-center mb-10 no-print">
             <h1 class="text-5xl font-bold text-slate-800 font-['Cormorant_Garamond'] company-logo mb-3">CODENPROFIT</h1>
-            <p class="text-slate-600 text-lg font-['Montserrat']">Premium Certificate of Excellence Generator</p>
+            <p class="text-slate-600 text-lg font-['Montserrat']">Premium A4 Certificate of Excellence Generator</p>
             <div class="w-32 h-1 gold-gradient mx-auto mt-4 rounded-full"></div>
         </div>
         
@@ -342,7 +375,7 @@
                                     <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                                     </svg>
-                                    PDF will be downloaded with recipient's name
+                                    Optimized for A4 printing and PDF download
                                 </p>
                             </div>
                         </div>
@@ -359,8 +392,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <div class="font-semibold group-hover:text-[#A67C00] transition-colors">Premium Design</div>
-                                <div class="text-sm text-gray-600 mt-1">High-resolution with watermark logo background</div>
+                                <div class="font-semibold group-hover:text-[#A67C00] transition-colors">A4 Format</div>
+                                <div class="text-sm text-gray-600 mt-1">Perfectly sized for printing (210×297mm)</div>
                             </div>
                         </li>
                         <li class="flex items-start p-4 hover:bg-amber-50 rounded-xl transition-all duration-300 group">
@@ -370,8 +403,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <div class="font-semibold group-hover:text-[#A67C00] transition-colors">Official Verification</div>
-                                <div class="text-sm text-gray-600 mt-1">2026 registry with animated gold seal</div>
+                                <div class="font-semibold group-hover:text-[#A67C00] transition-colors">Premium Design</div>
+                                <div class="text-sm text-gray-600 mt-1">With official company logo watermark</div>
                             </div>
                         </li>
                         <li class="flex items-start p-4 hover:bg-amber-50 rounded-xl transition-all duration-300 group">
@@ -389,24 +422,40 @@
                 </div>
             </div>
             
-            <!-- Certificate -->
+            <!-- Certificate Preview -->
             <div class="w-full lg:w-2/3 flex justify-center">
-                <div id="certificate" class="certificate-container double-border w-full max-w-4xl rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
-                    <!-- Watermark Background -->
-                    <div class="watermark-background"></div>
+                <div id="certificate" class="certificate-container double-border rounded-2xl shadow-2xl relative overflow-hidden">
+                    <!-- Company Logo Watermark -->
+                    <div class="company-logo-watermark">
+                        <!-- SVG Logo - Replaced with company name since we don't have the actual image -->
+                        <svg class="logo-watermark-svg" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#A67C00;stop-opacity:0.3" />
+                                    <stop offset="50%" style="stop-color:#C9A145;stop-opacity:0.2" />
+                                    <stop offset="100%" style="stop-color:#A67C00;stop-opacity:0.3" />
+                                </linearGradient>
+                            </defs>
+                            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" 
+                                  font-family="'Cormorant Garamond', serif" font-size="120" 
+                                  font-weight="bold" fill="url(#goldGradient)">
+                                CODENPROFIT
+                            </text>
+                        </svg>
+                    </div>
                     
                     <!-- Ornamental Border -->
                     <div class="ornamental-border">
-                        <div class="ornament-corner top-0 left-0 border-t-2 border-l-2 rounded-tl-lg"></div>
-                        <div class="ornament-corner top-0 right-0 border-t-2 border-r-2 rounded-tr-lg"></div>
-                        <div class="ornament-corner bottom-0 left-0 border-b-2 border-l-2 rounded-bl-lg"></div>
-                        <div class="ornament-corner bottom-0 right-0 border-b-2 border-r-2 rounded-br-lg"></div>
+                        <div class="ornament-corner top-20 left-20 border-t-2 border-l-2 rounded-tl-lg"></div>
+                        <div class="ornament-corner top-20 right-20 border-t-2 border-r-2 rounded-tr-lg"></div>
+                        <div class="ornament-corner bottom-20 left-20 border-b-2 border-l-2 rounded-bl-lg"></div>
+                        <div class="ornament-corner bottom-20 right-20 border-b-2 border-r-2 rounded-br-lg"></div>
                     </div>
                     
                     <!-- Certificate Content -->
-                    <div class="certificate-content h-full flex flex-col items-center text-center pt-12">
+                    <div class="certificate-content h-full flex flex-col items-center text-center">
                         <!-- Company Logo (Top Left) -->
-                        <div class="logo-container absolute top-8 left-8 flex items-center space-x-3 z-20">
+                        <div class="logo-container absolute top-12 left-12 flex items-center space-x-3 z-20">
                             <div class="logo-emblem w-14 h-14 rounded-full flex items-center justify-center shadow-lg">
                                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
@@ -418,98 +467,108 @@
                             </div>
                         </div>
                         
+                        <!-- Date (Top Right) -->
+                        <div class="absolute top-12 right-12 text-slate-600 text-sm font-['Montserrat'] font-medium z-20">
+                            Issued: <span class="text-[#A67C00]">January 15, 2026</span>
+                        </div>
+                        
                         <!-- Header -->
-                        <div class="mb-10">
+                        <div class="a4-header mt-16">
                             <div class="text-[#A67C00] text-sm tracking-[0.4em] font-['Montserrat'] font-medium mb-6 uppercase">In Recognition of Excellence</div>
-                            <h1 class="text-5xl md:text-6xl tracking-[0.2em] font-bold text-slate-800 font-['Cormorant_Garamond'] leading-tight uppercase">
+                            <h1 class="text-5xl md:text-5xl tracking-[0.15em] font-bold text-slate-800 font-['Cormorant_Garamond'] leading-tight uppercase">
                                 Certificate of<br>Professional Achievement
                             </h1>
                         </div>
                         
                         <!-- Sub-header -->
-                        <div class="text-slate-700 text-xl font-['Montserrat'] mb-14 max-w-3xl italic font-light">
+                        <div class="text-slate-700 text-lg font-['Montserrat'] mb-10 max-w-3xl italic font-light">
                             This distinguished award is presented by the Codenprofit Global Network to:
                         </div>
                         
                         <!-- Recipient Name -->
-                        <div class="mb-10 relative w-full max-w-4xl">
+                        <div class="a4-recipient relative w-full max-w-4xl">
                             <div class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-50/30 to-transparent opacity-30 rounded-2xl"></div>
-                            <div id="dynamicName" class="text-6xl md:text-7xl font-bold gold-gradient-text font-['Playfair_Display'] leading-tight relative px-12 py-8" data-text="Alexandra Chen">
+                            <div id="dynamicName" class="text-5xl md:text-5xl font-bold gold-gradient-text font-['Playfair_Display'] leading-tight relative px-8 py-6" data-text="Alexandra Chen">
                                 Alexandra Chen
                             </div>
-                            <div id="dynamicRole" class="text-2xl text-slate-700 font-medium mt-6 font-['Montserrat'] tracking-wide">
+                            <div id="dynamicRole" class="text-xl text-slate-700 font-medium mt-4 font-['Montserrat'] tracking-wide">
                                 Senior Full-Stack Developer
                             </div>
                         </div>
                         
                         <!-- Description -->
-                        <div class="text-slate-700 text-lg font-['Montserrat'] mb-10 leading-relaxed max-w-3xl font-light">
+                        <div class="text-slate-700 text-base font-['Montserrat'] mb-8 leading-relaxed max-w-3xl font-light">
                             This certifies that <span class="font-semibold text-[#2D2D2D]" id="inlineName">Alexandra Chen</span> has officially been inducted into the Codenprofit Professional Network as a <span class="font-semibold text-[#2D2D2D]" id="inlineRole">Senior Full-Stack Developer</span>.
                         </div>
                         
                         <!-- Main Content -->
-                        <div class="text-slate-700 text-lg font-['Montserrat'] mb-12 leading-relaxed max-w-3xl border-l-4 border-[#A67C00] pl-8 py-4 bg-gradient-to-r from-amber-50/40 to-transparent font-light">
+                        <div class="text-slate-700 text-base font-['Montserrat'] mb-10 leading-relaxed max-w-3xl border-l-4 border-[#A67C00] pl-6 py-3 bg-gradient-to-r from-amber-50/40 to-transparent font-light">
                             Having met the rigorous standards of our technical ecosystem, the bearer of this certificate is granted full access to the Codenprofit Marketplace. They represent the new era of developers: skilled, market-ready, and profit-driven.
                         </div>
                         
                         <!-- Signatures -->
-                        <div class="flex flex-col md:flex-row justify-between w-full mt-12 mb-24">
+                        <div class="a4-signatures flex flex-col md:flex-row justify-between w-full mt-6">
                             <div class="mb-10 md:mb-0">
-                                <div class="signature text-4xl text-[#2D2D2D] mb-3">CodeNprofit Team</div>
-                                <div class="h-px w-56 bg-gradient-to-r from-[#A67C00] to-transparent mx-auto mb-3"></div>
-                                <div class="text-slate-700 font-['Montserrat'] font-medium">Meet A Codenprofit</div>
+                                <div class="signature text-3xl text-[#2D2D2D] mb-2">CodeNprofit Team</div>
+                                <div class="h-px w-48 bg-gradient-to-r from-[#A67C00] to-transparent mx-auto mb-2"></div>
+                                <div class="text-slate-700 font-['Montserrat'] font-medium text-sm">Meet A Codenprofit</div>
                             </div>
                             
                             <div>
-                                <div class="signature text-4xl text-[#2D2D2D] mb-3">Avinash Hugar</div>
-                                <div class="h-px w-56 bg-gradient-to-r from-transparent to-[#A67C00] mx-auto mb-3"></div>
-                                <div class="text-slate-700 font-['Montserrat'] font-medium">Co-Founder</div>
+                                <div class="signature text-3xl text-[#2D2D2D] mb-2">Avinash Hugar</div>
+                                <div class="h-px w-48 bg-gradient-to-r from-transparent to-[#A67C00] mx-auto mb-2"></div>
+                                <div class="text-slate-700 font-['Montserrat'] font-medium text-sm">Co-Founder</div>
                             </div>
                         </div>
                         
                         <!-- Seal -->
-                        <div class="mt-4 mb-12 relative">
-                            <div class="seal w-40 h-40 rounded-full border-4 border-[#A67C00] flex flex-col items-center justify-center bg-gradient-to-br from-amber-100 to-amber-50 mx-auto relative overflow-hidden">
+                        <div class="a4-seal relative">
+                            <div class="seal w-32 h-32 rounded-full border-4 border-[#A67C00] flex flex-col items-center justify-center bg-gradient-to-br from-amber-100 to-amber-50 mx-auto relative overflow-hidden">
                                 <div class="seal-shimmer absolute inset-0"></div>
-                                <div class="absolute inset-4 rounded-full border-2 border-amber-300/50"></div>
+                                <div class="absolute inset-3 rounded-full border-2 border-amber-300/50"></div>
                                 <div class="text-[#A67C00] text-center px-2 z-10">
-                                    <div class="font-bold text-base font-['Montserrat'] tracking-wider uppercase">Verified</div>
-                                    <div class="text-sm font-['Montserrat'] mt-2 uppercase">Developer</div>
-                                    <div class="text-xs font-['Montserrat'] mt-3 uppercase tracking-widest">Codenprofit</div>
-                                    <div class="text-2xl font-bold font-['Montserrat'] mt-3">2026</div>
+                                    <div class="font-bold text-sm font-['Montserrat'] tracking-wider uppercase">Verified</div>
+                                    <div class="text-xs font-['Montserrat'] mt-1 uppercase">Developer</div>
+                                    <div class="text-xs font-['Montserrat'] mt-2 uppercase tracking-widest">Codenprofit</div>
+                                    <div class="text-xl font-bold font-['Montserrat'] mt-2">2026</div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Social Footer -->
-                        <div class="social-footer w-full border-t border-gray-300/50 pt-8 mt-8">
-                            <div class="text-slate-700 text-sm font-['Montserrat'] mb-6 tracking-wide">
+                        <div class="a4-footer social-footer w-full border-t border-gray-300/50 pt-6 mt-6">
+                            <div class="text-slate-700 text-sm font-['Montserrat'] mb-4 tracking-wide">
                                 Join the Codenprofit Community
                             </div>
-                            <div class="flex justify-center space-x-8 mb-6">
-                                <a href="https://github.com/codenprofit" target="_blank" class="social-icon w-12 h-12 bg-slate-800 hover:bg-slate-900 rounded-full flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <div class="flex justify-center space-x-6 mb-4">
+                                <a href="https://github.com/codenprofit" target="_blank" class="social-icon w-10 h-10 bg-slate-800 hover:bg-slate-900 rounded-full flex items-center justify-center shadow-lg">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
                                     </svg>
                                 </a>
-                                <a href="https://instagram.com/codenprofit" target="_blank" class="social-icon w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-full flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <a href="https://instagram.com/codenprofit" target="_blank" class="social-icon w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-full flex items-center justify-center shadow-lg">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
                                     </svg>
                                 </a>
-                                <a href="https://codenprofit.com" target="_blank" class="social-icon w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <a href="https://codenprofit.com" target="_blank" class="social-icon w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center shadow-lg">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-2 18v-8l8 4-8 4z"></path>
                                     </svg>
                                 </a>
                             </div>
-                            <div class="text-slate-600 text-xs font-['Montserrat'] mt-6 tracking-wide uppercase">
+                            <div class="text-slate-600 text-xs font-['Montserrat'] tracking-wide uppercase">
                                 Signed and Sealed in the Codenprofit Global Registry • 2026
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Footer Note -->
+        <div class="mt-12 text-center text-slate-600 text-sm font-['Montserrat'] no-print">
+            <p>This certificate generator is optimized for A4 paper size (210×297mm). For best printing results, use "Fit to page" in your printer settings.</p>
         </div>
     </div>
 
@@ -566,11 +625,15 @@
                     logging: false,
                     backgroundColor: '#F9F9F7',
                     allowTaint: true,
-                    foreignObjectRendering: true
+                    foreignObjectRendering: true,
+                    width: 210 * 3, // A4 width in mm * scale
+                    height: 297 * 3, // A4 height in mm * scale
+                    windowWidth: 210 * 3.78, // Convert mm to pixels
+                    windowHeight: 297 * 3.78
                 }).then(canvas => {
-                    const imgData = canvas.toDataURL('codenprofit.jpeg', 1.0);
+                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
                     const pdf = new window.jspdf.jsPDF({
-                        orientation: 'landscape',
+                        orientation: 'portrait',
                         unit: 'mm',
                         format: 'a4',
                         compress: true
@@ -579,14 +642,27 @@
                     const pageWidth = pdf.internal.pageSize.getWidth();
                     const pageHeight = pdf.internal.pageSize.getHeight();
                     
-                    const imgWidth = pageWidth - 20; // 10mm margins on each side
+                    // Calculate dimensions to fit the entire certificate
+                    const imgWidth = pageWidth - 0; // No margins
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
                     
-                    // Center the certificate on the page
-                    const xOffset = 10; // 10mm left margin
-                    const yOffset = (pageHeight - imgHeight) / 2;
+                    // If the image height exceeds page height, adjust
+                    let finalHeight = imgHeight;
+                    let yOffset = 0;
                     
-                    pdf.addImage(imgData, 'PNG', xOffset, yOffset, imgWidth, imgHeight, '', 'FAST');
+                    if (imgHeight > pageHeight) {
+                        finalHeight = pageHeight;
+                        const scale = pageHeight / imgHeight;
+                        const finalWidth = imgWidth * scale;
+                        const xOffset = (pageWidth - finalWidth) / 2;
+                        yOffset = 0;
+                        
+                        pdf.addImage(imgData, 'JPEG', xOffset, yOffset, finalWidth, finalHeight, '', 'FAST');
+                    } else {
+                        // Center vertically
+                        yOffset = (pageHeight - finalHeight) / 2;
+                        pdf.addImage(imgData, 'JPEG', 0, yOffset, imgWidth, finalHeight, '', 'FAST');
+                    }
                     
                     // Add metadata
                     pdf.setProperties({
