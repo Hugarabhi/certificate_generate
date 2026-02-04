@@ -427,8 +427,19 @@
                 <div id="certificate" class="certificate-container double-border rounded-2xl shadow-2xl relative overflow-hidden">
                     <!-- Company Logo Watermark -->
                     <div class="company-logo-watermark">
-                        <!-- SVG Logo - Replaced with company name since we don't have the actual image -->
-                        <svg class="logo-watermark-svg" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- SVG Logo - Replaced with company name since we don't have the actual image 
+    
+    <!-- Watermark Logo -->
+    <image href="codenprofit.jpeg" 
+           x="150" 
+           y="50" 
+           width="300" 
+           height="200" 
+           opacity="0.08" 
+           preserveAspectRatio="xMidYMid meet" />
+    
+</svg>
+
                             <defs>
                                 <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style="stop-color:#A67C00;stop-opacity:0.3" />
@@ -631,7 +642,7 @@
                     windowWidth: 210 * 3.78, // Convert mm to pixels
                     windowHeight: 297 * 3.78
                 }).then(canvas => {
-                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                    const imgData = canvas.toDataURL('codenprofit.jpeg', 1.0);
                     const pdf = new window.jspdf.jsPDF({
                         orientation: 'portrait',
                         unit: 'mm',
